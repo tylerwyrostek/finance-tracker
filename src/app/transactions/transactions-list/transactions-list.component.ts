@@ -16,8 +16,8 @@ export class TransactionsListComponent implements OnInit {
   }
 
   private getTransactions(): void{
-    this.userTransactions = this.transactionStore.getValue();
-    console.log(this.userTransactions);
+     ;
+    console.log(this.transactionStore.getValue());
   }
 
 }

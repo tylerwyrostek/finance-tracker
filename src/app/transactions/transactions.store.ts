@@ -3,27 +3,20 @@ import { Injectable } from '@angular/core';
 import { Transaction } from './transactions.types';
 import { Observable } from 'rxjs';
 
+export interface TransactionState{
+  transactions: Transaction[]
+}
 
-
-export function createInitialState(): Transaction[] {
-  return [{    amount: '',
-  description: '',
-  trasnactionType: '',
-  date: '',
-  sortingType: '',
-  sortingSubType: ''}]
+export function createInitialState(): TransactionState {
+  return {transactions: []}
 }
 @Injectable({
   providedIn: 'root'
 })
 
 @StoreConfig({ name: 'transaction' })
-export class TransactionStore extends Store<Transaction[]> {
+export class TransactionStore extends Store<TransactionState> {
   constructor() {
     super(createInitialState());
-  }
-
-  public getTransactions():Transaction[]{
-      return this.getValue();
   }
 }

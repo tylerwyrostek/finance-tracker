@@ -25,7 +25,8 @@ export class ImportComponent implements OnInit {
       next: (result): void => {
         console.log('Result', result);
         this.csvRecords = result;
-        this.transactionStore.update(this.csvRecords);
+        this.transactionStore.update({transactions : this.csvRecords});
+        console.log(this.transactionStore.getValue())
       },
       error: (error: NgxCSVParserError): void => {
         console.log('Error', error);
