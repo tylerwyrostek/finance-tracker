@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxCsvParser, NgxCSVParserError } from 'ngx-csv-parser';
+import { TransactionStore } from 'src/app/transactions/transactions.store';
 
 @Component({
   selector: 'app-import',
@@ -8,7 +9,7 @@ import { NgxCsvParser, NgxCSVParserError } from 'ngx-csv-parser';
 })
 export class ImportComponent implements OnInit {
   csvRecords: any;
-  constructor(private ngxCsvParser: NgxCsvParser) { }
+  constructor(private ngxCsvParser: NgxCsvParser, private transactionStore: TransactionStore) { }
 
   ngOnInit(): void {
   }
@@ -24,6 +25,7 @@ export class ImportComponent implements OnInit {
       next: (result): void => {
         console.log('Result', result);
         this.csvRecords = result;
+        this.transactionStore.update(result)
       },
       error: (error: NgxCSVParserError): void => {
         console.log('Error', error);
