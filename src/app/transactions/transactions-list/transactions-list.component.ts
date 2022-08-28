@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TransactionStore } from '../transactions.store';
+import { TransactionQuery} from '../transitions.query'
 import { Transaction } from '../transactions.types';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-transactions-list',
@@ -9,15 +10,14 @@ import { Transaction } from '../transactions.types';
 })
 export class TransactionsListComponent implements OnInit {
   userTransactions: Transaction[] = [];
-  constructor(private transactionStore: TransactionStore) { }
+  constructor(private transactionQuery: TransactionQuery) { }
 
   ngOnInit(): void {
     this.getTransactions();
   }
 
   private getTransactions(): void{
-     ;
-    console.log(this.transactionStore.getValue());
+    this.transactionQuery.allState$.pipe(map(results=>{this.userTransactions = results.transactions})).subscribe();
   }
 
 }

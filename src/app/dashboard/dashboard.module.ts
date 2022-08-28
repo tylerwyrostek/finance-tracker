@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { ImportModule } from '../import/import.module';
 import {TransactionsModule} from '../transactions/transactions.module'
 
 
@@ -12,7 +11,7 @@ import {TransactionsModule} from '../transactions/transactions.module'
     DashboardComponent
   ],
   imports: [
-    CommonModule, DashboardRoutingModule, ImportModule, TransactionsModule
+    CommonModule, DashboardRoutingModule, TransactionsModule
   ]
 })
 export class DashboardModule { }

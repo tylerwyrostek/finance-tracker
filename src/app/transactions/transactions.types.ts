@@ -1,8 +1,8 @@
 export type Transaction = {
-    amount: string;
-    description: string;
-    date:string;
-    trasnactionType: string;
-    sortingType?:string;
-    sortingSubType?:string;
+    Amount: string;
+    Description: string;
+    Date:string;
+    Type: string;
+    SortingType?:string;
+    SortingSubType?:string;
 }
