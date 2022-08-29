@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxCsvParser, NgxCSVParserError } from 'ngx-csv-parser';
 import { TransactionStore } from 'src/app/transactions/transactions.store';
+import {TransactionTypes} from '../transactions.types';
 
 @Component({
   selector: 'app-import',
@@ -9,6 +10,8 @@ import { TransactionStore } from 'src/app/transactions/transactions.store';
 })
 export class ImportComponent implements OnInit {
   csvRecords: any;
+  withdrawlTotal: number = 0;
+  depositTotal: number = 0;
   constructor(private ngxCsvParser: NgxCsvParser, private transactionStore: TransactionStore) { }
 
   ngOnInit(): void {
@@ -24,7 +27,8 @@ export class ImportComponent implements OnInit {
     .pipe().subscribe({
       next: (result): void => {
         this.csvRecords = this.sanatizeResults(result);
-        this.transactionStore.update({transactions : this.csvRecords});
+        this.calculateTotals(this.csvRecords);
+        this.transactionStore.update({transactions : this.csvRecords, withdrawalTotal: this.withdrawlTotal, depositTotal: this.depositTotal});
       },
       error: (error: NgxCSVParserError): void => {
         console.error('Error', error);
@@ -43,6 +47,7 @@ export class ImportComponent implements OnInit {
           delete obj[key];
         }
     });
+
     sanatizedList.push(obj);
   });
 return sanatizedList
@@ -50,6 +55,19 @@ return sanatizedList
 
 private resetStore(): void{
   this.transactionStore.reset();
+}
+
+private calculateTotals(results: any): void{
+  results.forEach((transaction: any) => {
+    if(transaction.Type === TransactionTypes.Withdrawal){
+      console.log(transaction.Amount);
+      this.withdrawlTotal += +transaction.Amount;
+      console.log(this.withdrawlTotal);
+    }else if(transaction.Type === TransactionTypes.Deposit){
+      this.depositTotal += +transaction.Amount;
+    }
+  });
+
 }
 
 }
