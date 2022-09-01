@@ -4,7 +4,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import {TransactionsModule} from '../transactions/transactions.module';
 import { NavbarComponent } from './navbar/navbar.component';
-import { FinanceWidgetComponent } from './finance-widget/finance-widget.component'
+import { FinanceWidgetComponent } from './finance-widget/finance-widget.component';
+import { PlanningModule } from '../planning/planning.module';
 
 
 
@@ -15,7 +16,7 @@ import { FinanceWidgetComponent } from './finance-widget/finance-widget.componen
     FinanceWidgetComponent
   ],
   imports: [
-    CommonModule, DashboardRoutingModule, TransactionsModule
+    CommonModule, DashboardRoutingModule, TransactionsModule, PlanningModule
   ],
   exports:[NavbarComponent]
 })

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { PlanIncomeFormComponent } from '../plan-income-form/plan-income-form.component';
+import { PlanningStore } from '../planning.store';
+import { PlanningQuery } from '../planning.query';
 
 @Component({
   selector: 'app-planning-container',
@@ -6,10 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./planning-container.component.css']
 })
 export class PlanningContainerComponent implements OnInit {
-
-  constructor() { }
+  @ViewChild(PlanIncomeFormComponent)
+  private planFormComponent: PlanIncomeFormComponent = new PlanIncomeFormComponent(new PlanningStore, new PlanningQuery(new PlanningStore));
+  constructor(private planningStore: PlanningStore) { }
 
   ngOnInit(): void {
+    
+  }
+
+  public addIncome():void {
+    var _res = JSON.parse(JSON.stringify(this.planningStore.getValue().expectedIncome))
+    _res.push({Income: 0, Index: _res.length});
+
+    this.planningStore.update({expectedIncome: _res});
   }
 
 }
