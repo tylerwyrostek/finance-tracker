@@ -1,10 +1,29 @@
 <div class="h-screen">
-    <div class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-        <h2 class=" inline text-4xl font-normal leading-normal mt-0 mb-2 text-white">Income</h2>
-        <button (click)="addIncome()" class="focus:outline-none float-right align-middle text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg><span class="px-1">Add Income</span></button>
-        <app-plan-income-form></app-plan-income-form>
+    <div class="flex flex-wrap ">
+        <div class="w-full md:w-1/2 lg:w-1/3 p-4">
+            <h2 class=" inline text-4xl font-normal leading-normal mt-0 mb-2 text-white">Plan your finances</h2><br/>
+            <p class="text-white text-sm">You can plan your income to prepare for the upcoming month. You can add expected income that you will recieve this month and the expense amounts that you want to spend in each category for the month. The expense categories are broken into 3 sections: Needs, Wants, Savings. Using the 50/30/20 model you should aim to have 50% of your expense for the month to cover your needs, 30% to cover you wants, and 20% into savings. You can click the '+' icon to add a new row for expenses.</p>
+        </div>
+        <div class="w-full md:w-1/2 lg:w-1/3 m-4 items-center p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+            <h2 class=" inline text-4xl font-normal leading-normal mt-0 mb-2 text-white">Income</h2>
+            <button (click)="addIncome()" class="focus:outline-none float-right align-middle text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg><span class="px-1">Add Income</span></button>
+            <app-plan-income-form></app-plan-income-form>
+        </div>
+
+    </div>
+
+    <div class="flex flex-wrap">
+        <div class="w-full md:w-1/2 lg:w-1/3">
+            <app-plan-expenses-form [type]="EXPENSE_TYPES.Need"></app-plan-expenses-form>
+        </div>
+        <div class="w-full md:w-1/2 lg:w-1/3">
+            <app-plan-expenses-form [type]="EXPENSE_TYPES.Want"></app-plan-expenses-form>
+        </div>
+        <div class="w-full md:w-1/2 lg:w-1/3">
+            <app-plan-expenses-form [type]="EXPENSE_TYPES.Saving"></app-plan-expenses-form>
+        </div>
     </div>
     
 </div>

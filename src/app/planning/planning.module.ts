@@ -4,12 +4,14 @@ import { PlanningContainerComponent } from './planning-container/planning-contai
 import { PlanningRoutingModule } from './planning-routing.module';
 import { PlanIncomeFormComponent } from './plan-income-form/plan-income-form.component';
 import { FormsModule } from '@angular/forms';
+import { PlanExpensesFormComponent } from './plan-expenses-form/plan-expenses-form.component';
 
 
 @NgModule({
   declarations: [
     PlanningContainerComponent,
-    PlanIncomeFormComponent
+    PlanIncomeFormComponent,
+    PlanExpensesFormComponent
   ],
   imports: [
     CommonModule,

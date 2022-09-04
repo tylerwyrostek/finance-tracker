@@ -1,17 +1,23 @@
 import { Store, StoreConfig } from '@datorama/akita';
 import { Injectable } from '@angular/core';
-import { ExpectedIncome } from './planning.types';
+import { ExpectedIncome, PlannedExpense } from './planning.types';
 import { Observable } from 'rxjs';
 
 export interface PlanningState{
   expectedIncome: ExpectedIncome[],
-  month: string | null
+  month: string | null,
+  needExpenses: PlannedExpense[],
+    wantExpenses: PlannedExpense[],
+    savingExpenses: PlannedExpense[]
 }
 
 export function createInitialState(): PlanningState {
   return {
     expectedIncome: [],
-    month: null
+    month: null,
+    needExpenses: [],
+    wantExpenses: [],
+    savingExpenses: []
   }
 }
 @Injectable({
