@@ -60,9 +60,7 @@ private resetStore(): void{
 private calculateTotals(results: any): void{
   results.forEach((transaction: any) => {
     if(transaction.Type === TransactionTypes.Withdrawal){
-      console.log(transaction.Amount);
       this.withdrawlTotal += +transaction.Amount;
-      console.log(this.withdrawlTotal);
     }else if(transaction.Type === TransactionTypes.Deposit){
       this.depositTotal += +transaction.Amount;
     }

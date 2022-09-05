@@ -47,7 +47,6 @@ export class PlanExpensesFormComponent implements OnInit {
   }
 
   public updateStore(expenses: PlannedExpense[]):void{
-    console.log(expenses);
     switch(this.type){
       case ExpenseTypes.Need:
         this.planningStore.update({needExpenses: expenses})
@@ -73,16 +72,16 @@ export class PlanExpensesFormComponent implements OnInit {
   private getExpenses(): void{
     this.planningQuery.allState$.pipe(
       map(results =>{
-        console.log(results);
         switch(this.type){
           case ExpenseTypes.Need:
-            this.userExpenses = results.needExpenses;
+            
+            this.userExpenses = JSON.parse(JSON.stringify(results.needExpenses));
             break;
           case ExpenseTypes.Want:
-            this.userExpenses = results.wantExpenses;
+            this.userExpenses = JSON.parse(JSON.stringify(results.wantExpenses));
             break;
           case ExpenseTypes.Saving:
-            this.userExpenses = results.savingExpenses;
+            this.userExpenses = JSON.parse(JSON.stringify(results.savingExpenses));
             break;
           default: 
             this.userExpenses = [];
@@ -94,6 +93,10 @@ export class PlanExpensesFormComponent implements OnInit {
         this.addExpense({expenseName: 'New Expense', expenseTotal: 0});
       })
     ).subscribe();
+  }
+
+  public trackByFn(index: any, item: any): void {
+    return index;  
   }
 
 

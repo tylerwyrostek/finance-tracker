@@ -22,3 +22,9 @@ export enum ExpenseTypes{
     Want = 'Want',
     Saving = 'Saving'
 }
+
+export type ExpensePercents = {
+        needs: number;
+        wants: number;
+        savings: number;
+}

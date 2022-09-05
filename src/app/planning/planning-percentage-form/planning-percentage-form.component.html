@@ -1,0 +1,14 @@
+<div class="m-4 p-6 bg-white rounded-lg border border-gray-200 shadow-md  dark:bg-gray-800 dark:border-gray-700">
+<div class="flex flex-col items-center">
+    <div class="w-full md:w-1/2 lg:w-1/3 p-3">
+        <p class="text-white text-xl"><u>Needs</u> <br/><b [ngClass]="{'text-red-600': percents.needs >= .5, 'text-white': percents.needs < .35, 'text-yellow-500': percents.needs >=.35 && percents.needs < .5}">{{percents.needs | percent: '1.2'}}</b></p>
+    </div>
+    <div class="w-full md:w-1/2 lg:w-1/3 p-3">
+        <p class="text-white text-xl"><u>Wants</u> <br/><b [ngClass]="{'text-red-600': percents.wants >= .3, 'text-white': percents.wants < .2, 'text-yellow-500': percents.wants >=.2 && percents.wants < .3}">{{percents.wants | percent: '1.2'}}</b></p>
+    </div>
+    <div class="w-full md:w-1/2 lg:w-1/3 p-3">
+        <p class="text-white text-xl"><u>Savings</u> <br/><b [ngClass]="{'text-red-600': percents.savings >= .2, 'text-white': percents.savings < .15, 'text-yellow-500': percents.savings >=.15 && percents.savings < .2}">{{percents.savings | percent: '1.2'}}</b></p>
+    </div>
+</div>
+
+</div>

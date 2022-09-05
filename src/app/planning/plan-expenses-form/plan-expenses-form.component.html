@@ -12,7 +12,7 @@
     
   </div>
   
-  <div *ngFor="let expense of userExpenses; let i = index;" class="w-full mb-2 flex flex-row items-center">
+  <div *ngFor="let expense of userExpenses; let i = index; trackBy: trackByFn" class="w-full mb-2 flex flex-row items-center">
     
       <div class="flex-auto">
         <input [(ngModel)]="userExpenses[i].expenseName" (ngModelChange)="updateStore(userExpenses)" [name]="userExpenses[i].expenseName" class="capitalize appearance-none bg-transparent border-none w-full text-white mr-4 focus:outline-none" type="text" placeholder="Expense" aria-label="Expense">

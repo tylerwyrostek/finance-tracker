@@ -23,8 +23,6 @@ export class FinanceWidgetComponent implements OnInit {
     this.plannedFinances.expectedIncome.forEach(income =>{
       this.plannedIncomeTotal  += income.Income;
     })
-
-    console.log(this.plannedIncomeTotal);
   }
 
   private calculateExpenses(): void{

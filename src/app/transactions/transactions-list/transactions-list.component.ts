@@ -18,7 +18,6 @@ export class TransactionsListComponent implements OnInit {
 
   private getTransactions(): void{
     this.transactionQuery.allState$.pipe(map(results=>{this.userTransactions = results.transactions})).subscribe();
-    //this.transactionQuery.allState$.pipe(map(results=>{console.log(results)})).subscribe();
   }
 
 }

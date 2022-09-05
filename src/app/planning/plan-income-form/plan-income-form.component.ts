@@ -29,7 +29,7 @@ export class PlanIncomeFormComponent implements OnInit {
   private getExpectedIncome(): void{
     this.planningQuery.allState$.pipe(
       map(results =>{
-        this.userIncome = results.expectedIncome;
+        this.userIncome = JSON.parse(JSON.stringify(results.expectedIncome));
         if(this.userIncome.length > 0) return;
 
         this.addIncome({Income: 0, Index: 0})
@@ -42,6 +42,10 @@ export class PlanIncomeFormComponent implements OnInit {
     this.planningStore.update({expectedIncome: updatedIncome})
     
     
+  }
+
+  public trackByFn(index: any, item: any): void {
+    return index;  
   }
 
 }
