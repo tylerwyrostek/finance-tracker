@@ -40,8 +40,6 @@ export class PlanIncomeFormComponent implements OnInit {
   public deleteIncome(income: ExpectedIncome):void{
     var updatedIncome = this.userIncome.filter(x=> x!==income);
     this.planningStore.update({expectedIncome: updatedIncome})
-    
-    
   }
 
   public trackByFn(index: any, item: any): void {

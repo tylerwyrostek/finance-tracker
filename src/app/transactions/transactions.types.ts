@@ -5,6 +5,7 @@ export type Transaction = {
     Type: string;
     SortingType?:string;
     SortingSubType?:string;
+    Enabled: boolean;
 }
 
 export enum TransactionTypes {

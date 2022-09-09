@@ -8,6 +8,9 @@ import { Injectable } from '@angular/core';
 export class PlanningQuery extends Query<PlanningState> {  
 
     allState$ = this.select();
+    // needState$ = this.select(state=> state.needExpenses);
+    // wantsState$ = this.select(state => state.wantExpenses);
+    // savingState$ = this.select(state => state.savingExpenses);
   constructor(protected override store: PlanningStore) {
     super(store);
   }

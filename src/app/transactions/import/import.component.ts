@@ -10,8 +10,6 @@ import {TransactionTypes} from '../transactions.types';
 })
 export class ImportComponent implements OnInit {
   csvRecords: any;
-  withdrawlTotal: number = 0;
-  depositTotal: number = 0;
   constructor(private ngxCsvParser: NgxCsvParser, private transactionStore: TransactionStore) { }
 
   ngOnInit(): void {
@@ -27,8 +25,7 @@ export class ImportComponent implements OnInit {
     .pipe().subscribe({
       next: (result): void => {
         this.csvRecords = this.sanatizeResults(result);
-        this.calculateTotals(this.csvRecords);
-        this.transactionStore.update({transactions : this.csvRecords, withdrawalTotal: this.withdrawlTotal, depositTotal: this.depositTotal});
+        this.transactionStore.update({transactions : this.csvRecords});
       },
       error: (error: NgxCSVParserError): void => {
         console.error('Error', error);
@@ -57,15 +54,5 @@ private resetStore(): void{
   this.transactionStore.reset();
 }
 
-private calculateTotals(results: any): void{
-  results.forEach((transaction: any) => {
-    if(transaction.Type === TransactionTypes.Withdrawal){
-      this.withdrawlTotal += +transaction.Amount;
-    }else if(transaction.Type === TransactionTypes.Deposit){
-      this.depositTotal += +transaction.Amount;
-    }
-  });
-
-}
 
 }

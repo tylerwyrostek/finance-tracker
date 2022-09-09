@@ -10,19 +10,25 @@
                         Date
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Type
+                        Transaction Type
                     </th>
                     <th scope="col" class="py-3 px-6">
                         Amount
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Action
+                        Planning Type
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Planning Subtype
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Delete
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let transaction of userTransactions" class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 dark:text-white">
                         {{transaction.Description}}
                     </th>
                     <td class="py-4 px-6">
@@ -35,7 +41,24 @@
                         {{transaction.Amount}}
                     </td>
                     <td class="py-4 px-6">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <select [(ngModel)]="transaction.SortingType" [name]="transaction.Description" (ngModelChange)="planningTypeChange(transaction)" id="underline_select" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                            <option>Planning Type</option>
+                            <option *ngFor="let expense of EXPENSE_TYPES | keyvalue" [value]="expense.value">{{expense.key}}</option>
+                        </select>
+                    </td>
+                    <td class="py-4 px-6">
+                        <select *ngIf="transaction.SortingType === 'Need'" [disabled]="!transaction.SortingType" id="underline_select" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                            <option *ngFor="let need of plannedFinances.needExpenses" [value]="need.expenseName">{{need.expenseName}}</option>
+                        </select>
+                        <select *ngIf="transaction.SortingType === 'Want'" [disabled]="!transaction.SortingType" id="underline_select" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                            <option *ngFor="let want of plannedFinances.wantExpenses" [value]="want.expenseName">{{want.expenseName}}</option>
+                        </select>
+                        <select *ngIf="transaction.SortingType === 'Saving'" [disabled]="!transaction.SortingType" id="underline_select" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                            <option *ngFor="let saving of plannedFinances.savingExpenses" [value]="saving.expenseName">{{saving.expenseName}}</option>
+                        </select>
+                    </td>
+                    <td class="py-4 px-6">
+                        <button (click)="deleteTransaction(transaction)" type="button" class="text-white right-2.5 bottom-2.5 bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">X</button>
                     </td>
                 </tr>
             </tbody>
