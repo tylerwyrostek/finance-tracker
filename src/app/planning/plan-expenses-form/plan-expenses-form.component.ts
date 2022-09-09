@@ -12,11 +12,14 @@ import { map } from 'rxjs';
 export class PlanExpensesFormComponent implements OnInit {
   @Input() type!: ExpenseTypes;
   userExpenses: PlannedExpense[] = [];
+  total: number = 0;
   constructor(private planningStore: PlanningStore, private planningQuery: PlanningQuery) { }
 
   ngOnInit(): void {
     this.getExpenses();
+    
   }
+  
 
   public addExpense(expense: PlannedExpense):void{
 
@@ -63,6 +66,11 @@ export class PlanExpensesFormComponent implements OnInit {
     }
   }
 
+  private updateTotal():void{
+    this.total = this.userExpenses.reduce((subtotal, item) => subtotal + item.expenseTotal, 0  );
+    console.log(this.total);
+  }
+
   public deleteExpense(expense: PlannedExpense):void{
     var updatedExpenses = this.userExpenses.filter(x=> x!==expense);
     this.updateStore(updatedExpenses);
@@ -88,6 +96,7 @@ export class PlanExpensesFormComponent implements OnInit {
             console.error('no type that matches');
             break;
         }
+        this.updateTotal();
         if(this.userExpenses.length > 0) return;
 
         this.addExpense({expenseName: 'New Expense', expenseTotal: 0});

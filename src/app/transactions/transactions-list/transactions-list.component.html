@@ -47,14 +47,14 @@
                         </select>
                     </td>
                     <td class="py-4 px-6">
-                        <select *ngIf="transaction.SortingType === 'Need'" [disabled]="!transaction.SortingType" id="underline_select" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-                            <option *ngFor="let need of plannedFinances.needExpenses" [value]="need.expenseName">{{need.expenseName}}</option>
+                        <select [(ngModel)]="transaction.SortingSubType" *ngIf="transaction.SortingType === 'Need'" [disabled]="!transaction.SortingType" id="underline_select" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                            <option class="capitalize" *ngFor="let need of plannedFinances.needExpenses" [value]="need.expenseName">{{need.expenseName}}</option>
                         </select>
-                        <select *ngIf="transaction.SortingType === 'Want'" [disabled]="!transaction.SortingType" id="underline_select" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-                            <option *ngFor="let want of plannedFinances.wantExpenses" [value]="want.expenseName">{{want.expenseName}}</option>
+                        <select [(ngModel)]="transaction.SortingSubType" *ngIf="transaction.SortingType === 'Want'" [disabled]="!transaction.SortingType" id="underline_select" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                            <option class="capitalize" *ngFor="let want of plannedFinances.wantExpenses" [value]="want.expenseName">{{want.expenseName}}</option>
                         </select>
-                        <select *ngIf="transaction.SortingType === 'Saving'" [disabled]="!transaction.SortingType" id="underline_select" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-                            <option *ngFor="let saving of plannedFinances.savingExpenses" [value]="saving.expenseName">{{saving.expenseName}}</option>
+                        <select [(ngModel)]="transaction.SortingSubType" *ngIf="transaction.SortingType === 'Saving'" [disabled]="!transaction.SortingType" id="underline_select" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                            <option class="capitalize" *ngFor="let saving of plannedFinances.savingExpenses" [value]="saving.expenseName">{{saving.expenseName}}</option>
                         </select>
                     </td>
                     <td class="py-4 px-6">

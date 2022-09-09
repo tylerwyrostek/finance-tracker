@@ -11,10 +11,12 @@ import { map } from 'rxjs';
 })
 export class PlanIncomeFormComponent implements OnInit {
   userIncome: ExpectedIncome[] = [];
+  total: number = 0;
   constructor(private planningStore: PlanningStore, private planningQuery: PlanningQuery) { }
 
   ngOnInit(): void {
     this.getExpectedIncome();
+    
   }
 
   public addIncome(income: ExpectedIncome): void{
@@ -30,11 +32,17 @@ export class PlanIncomeFormComponent implements OnInit {
     this.planningQuery.allState$.pipe(
       map(results =>{
         this.userIncome = JSON.parse(JSON.stringify(results.expectedIncome));
+        this.updateTotal();
         if(this.userIncome.length > 0) return;
 
         this.addIncome({Income: 0, Index: 0})
       })
     ).subscribe();
+  }
+
+  private updateTotal():void{
+    this.total = this.userIncome.reduce((subtotal, item) => subtotal + item.Income, 0  );
+    console.log(this.total);
   }
 
   public deleteIncome(income: ExpectedIncome):void{

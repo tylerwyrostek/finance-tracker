@@ -1,7 +1,7 @@
-<div class="m-4 p-6 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+<div (keyup.alt.a)="addExpense({expenseName: 'New Expense', expenseTotal: 0})" class="m-4 p-6 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
   <div class="flex flex-row items-center">
     <div class="flex-auto">
-      <h2 class="text-center inline text-4xl font-normal leading-normal mt-0 mb-2 text-white">{{type}}</h2>
+      <h2 class="text-center inline text-4xl font-normal leading-normal mt-0 mb-2 text-white">{{type}} - ${{total}}</h2>
     </div>
     <div class="flex-auto">
       <button (click)="addExpense({expenseName: 'New Expense', expenseTotal: 0})" class="focus:outline-none float-right align-middle text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-2 py-1 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
