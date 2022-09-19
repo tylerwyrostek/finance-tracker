@@ -42,7 +42,6 @@ export class PlanIncomeFormComponent implements OnInit {
 
   private updateTotal():void{
     this.total = this.userIncome.reduce((subtotal, item) => subtotal + item.Income, 0  );
-    console.log(this.total);
   }
 
   public deleteIncome(income: ExpectedIncome):void{

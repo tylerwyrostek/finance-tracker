@@ -31,7 +31,6 @@ export class TransactionsListComponent implements OnInit {
   }
 
   public planningTypeChange(transaction: Transaction){
-    console.log(transaction);
     this.transactionStore.update({transactions: this.userTransactions})
   }
 

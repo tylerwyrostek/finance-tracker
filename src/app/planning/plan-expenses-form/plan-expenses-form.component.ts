@@ -68,7 +68,7 @@ export class PlanExpensesFormComponent implements OnInit {
 
   private updateTotal():void{
     this.total = this.userExpenses.reduce((subtotal, item) => subtotal + item.expenseTotal, 0  );
-    console.log(this.total);
+
   }
 
   public deleteExpense(expense: PlannedExpense):void{
