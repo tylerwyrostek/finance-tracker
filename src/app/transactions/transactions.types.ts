@@ -16,5 +16,6 @@ export enum TransactionTypes {
 export type Finances = {
     transactions: Transaction[],
     withdrawalTotal: number,
-    depositTotal: number
+    depositTotal: number,
+    userId?: string
 }

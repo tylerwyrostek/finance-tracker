@@ -5,6 +5,7 @@ import { TransactionDetailComponent } from './transaction-detail/transaction-det
 import { ImportComponent } from './import/import.component';
 import {TransactionsRoutingModule} from './transactions-routing.module';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     TransactionsRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   exports: [TransactionsListComponent, TransactionDetailComponent]
 })

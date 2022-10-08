@@ -19,6 +19,7 @@ export class TransactionsListComponent implements OnInit {
   ngOnInit(): void {
     this.getTransactions();
     this.getSubtypeArrays();
+    console.log(this.userTransactions);
   }
 
   private getTransactions(): void{
