@@ -1,4 +1,3 @@
-import { TransactionsService } from './../transactions.service';
 import { Component, OnInit } from '@angular/core';
 import { NgxCsvParser, NgxCSVParserError } from 'ngx-csv-parser';
 import { TransactionStore } from 'src/app/transactions/transactions.store';
@@ -12,7 +11,7 @@ import {TransactionTypes} from '../transactions.types';
 })
 export class ImportComponent implements OnInit {
   csvRecords: any;
-  constructor(private ngxCsvParser: NgxCsvParser, private transactionStore: TransactionStore, private transactionService: TransactionsService) { }
+  constructor(private ngxCsvParser: NgxCsvParser, private transactionStore: TransactionStore) { }
 
   ngOnInit(): void {
   }
@@ -28,9 +27,6 @@ export class ImportComponent implements OnInit {
       next: (result): void => {
         this.csvRecords = this.sanatizeResults(result);
         this.transactionStore.update({transactions : this.csvRecords});
-        this.transactionService.addTransactions(this.csvRecords).subscribe(results=>{
-          console.log(results);
-        });
       },
       error: (error: NgxCSVParserError): void => {
         console.error('Error', error);
